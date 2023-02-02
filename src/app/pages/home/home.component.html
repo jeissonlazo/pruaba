@@ -1,0 +1,80 @@
+<div class="user">
+  <form [formGroup]="options" class="user__form" (ngSubmit)="onSubmit()"> 
+      <h2 class="user__form__title">Agregar usuario</h2>
+      <mat-form-field appearance="fill" >
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="firstName" required>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="fill" >
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="lastName" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" >
+        <mat-label>Edad</mat-label>
+        <input matInput formControlName="age" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" >
+        <mat-select required formControlName="location">
+          <mat-option value="Latam">Latam</mat-option>
+          <mat-option value="Europa">Europa</mat-option>
+          <mat-option value="USA">USA</mat-option>
+          <mat-option value="Asia">Asia</mat-option>
+        </mat-select>
+        <mat-label>Ubicacion</mat-label>
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" type="submit" [disabled]="!options.valid" class="user__form__title">Agregar</button>
+
+  </form>
+
+  <div class="user__list">
+    <mat-form-field>
+      <mat-label>Filtrar</mat-label>
+      <input matInput (keyup)="applyFilter($event)"#input>
+    </mat-form-field>
+    
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+      
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef> Apellido </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="age">
+        <th mat-header-cell *matHeaderCellDef> Edad </th>
+        <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef> Ubicacion </th>
+        <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let element" (click)="deleteItem(element)">
+          <button  mat-mini-fab aria-label="Example icon button with a delete icon">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+  </div>
+</div>
