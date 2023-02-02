@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 
 export interface Element {
   firstName: string;
@@ -25,8 +26,29 @@ let ELEMENT_DATA: Element[] = [
   templateUrl: './list-filter.component.html',
   styleUrls: ['./list-filter.component.scss']
 })
-export class ListFilterComponent {
+export class ListFilterComponent implements OnInit {
 
   displayedColumns: string[] = [ 'firstName', 'lastName', 'age','location', 'actions'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSourcePass = new MatTableDataSource(ELEMENT_DATA);
+  dataSourceNoPass = new MatTableDataSource(ELEMENT_DATA);
+
+  age!:any;
+    
+  constructor(private _Activatedroute:ActivatedRoute){
+
+  }
+
+  ngOnInit (){
+    this._Activatedroute.paramMap.subscribe(paramMap => { 
+      this.age = paramMap.get('age'); 
+      this.filter();
+    });
+  }
+
+  filter(){
+    let pass = ELEMENT_DATA.filter(element => element.age  >= this.age)
+    let noPass = ELEMENT_DATA.filter(element => element.age < this.age)
+    this.dataSourcePass = new MatTableDataSource(pass);
+    this.dataSourceNoPass = new MatTableDataSource(noPass);
+  }
 }

@@ -1,7 +1,7 @@
 
   <div class="user__list">
 		<h2>Usuarios con la edad requerida</h2>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSourcePass" class="mat-elevation-z8">
     
       
       <ng-container matColumnDef="firstName">
@@ -46,7 +46,7 @@
 		<h2>Usuarios sin la edad requerida</h2>
 
     
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSourceNoPass" class="mat-elevation-z8">
     
       
       <ng-container matColumnDef="firstName">

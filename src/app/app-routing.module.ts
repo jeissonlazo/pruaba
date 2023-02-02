@@ -4,7 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ListFilterComponent } from './pages/list-filter/list-filter.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'list', component: ListFilterComponent },
+  { path: 'list/:age', component: ListFilterComponent },
 ];
 
 @NgModule({
