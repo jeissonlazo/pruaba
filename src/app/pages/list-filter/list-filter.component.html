@@ -1,5 +1,5 @@
 
-  <div class="user__list">
+  <div class="list">
 		<h2>Usuarios con la edad requerida</h2>
     <table mat-table [dataSource]="dataSourcePass" class="mat-elevation-z8">
     
@@ -42,7 +42,7 @@
     </table>
   </div>
 
-	<div class="user__list">
+	<div class="list">
 		<h2>Usuarios sin la edad requerida</h2>
 
     
@@ -85,4 +85,7 @@
         <td class="mat-cell" colspan="4">No data matching the filter</td>
       </tr>
     </table>
+
+    
   </div>
+  <button mat-flat-button color="primary" class="button" (click)="back()">Volver</button>
