@@ -27,7 +27,7 @@
         <mat-label>Ubicacion</mat-label>
       </mat-form-field>
 
-      <button mat-flat-button color="primary" type="submit" [disabled]="!options.valid" class="user__form__title">Agregar</button>
+      <button mat-flat-button color="primary" type="submit" [disabled]="!options.valid" class="user__form__button">Agregar</button>
 
   </form>
 
@@ -36,6 +36,7 @@
       <mat-label>Filtrar</mat-label>
       <input matInput (keyup)="applyFilter($event)"#input>
     </mat-form-field>
+    <button mat-flat-button color="primary" class="user__list__button" (click)="openDialog()">Enviar</button>
     
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     

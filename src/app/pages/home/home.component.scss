@@ -1,14 +1,12 @@
 .user{
 	&__form{
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(5, 1fr);
 		grid-row-gap: 10px;
 		grid-column-gap: 10px;
-		max-width: 500px;
-		margin:  0 auto ;
-
+		padding: 0 30px;
 		&__title{
-			grid-column: 1/3;
+			grid-column: 1/6;
 			text-align: center;
 		}
 	}

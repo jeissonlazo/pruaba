@@ -2,3 +2,7 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+	opacity: 1;
+	background: rgba(0,0,0,.5);
+}

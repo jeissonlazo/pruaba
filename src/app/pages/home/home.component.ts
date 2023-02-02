@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {MatTableDataSource} from '@angular/material/table';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AgeRestrictionComponent } from './age-restriction/age-restriction.component';
 export interface Element {
   firstName: string;
   age: number;
   lastName: string;
   location: string;
- }
- 
- let ELEMENT_DATA: Element[] = [
+}
+
+let ELEMENT_DATA: Element[] = [
   {age: 1,firstName: 'Hugo', lastName: 'Andrade', location: 'Latam'},
   {age: 2,firstName: 'Martín', lastName: 'Benítez', location: 'Asia'},
   {age: 3,firstName: 'Lucas', lastName: 'Castillo', location: 'Europa'},
@@ -36,7 +37,7 @@ export class HomeComponent {
     location: new FormControl(''),
   });
 
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   displayedColumns: string[] = [ 'firstName', 'lastName', 'age','location', 'actions'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
@@ -56,5 +57,20 @@ export class HomeComponent {
     let r = ELEMENT_DATA.filter(element => element != item);
     ELEMENT_DATA = r;
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+  }
+
+  openDialog() {
+    const ref: MatDialogRef<AgeRestrictionComponent> = this.dialog.open(
+      AgeRestrictionComponent,
+      {
+        width: '900px',
+        height: '650px',
+        backdropClass: 'confirmDialogComponent',
+        hasBackdrop: true,
+      }
+      );
+      
+      ref.afterClosed().subscribe((data) => {
+      });
   }
 }

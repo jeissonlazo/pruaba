@@ -15,14 +15,18 @@ import { MatCheckboxModule} from '@angular/material/checkbox';
 import { MatButtonModule} from '@angular/material/button';
 import { MatTableModule} from '@angular/material/table';
 import { MatFormFieldModule} from '@angular/material/form-field';
+import {MatDialogModule} from '@angular/material/dialog';
+
 import { HomeComponent } from './pages/home/home.component';
 import { ListFilterComponent } from './pages/list-filter/list-filter.component';
+import { AgeRestrictionComponent } from './pages/home/age-restriction/age-restriction.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ListFilterComponent
+    ListFilterComponent,
+    AgeRestrictionComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +42,7 @@ import { ListFilterComponent } from './pages/list-filter/list-filter.component';
     MatCheckboxModule, 
     MatButtonModule,
     MatTableModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
