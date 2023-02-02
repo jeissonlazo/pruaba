@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ListFilterComponent implements OnInit {
 
-  displayedColumns: string[] = [ 'firstName', 'lastName', 'age','location', 'actions'];
+  displayedColumns: string[] = [ 'firstName', 'lastName', 'age','location'];
   dataSourcePass:any;
   dataSourceNoPass:any;
   usersList:User[] = [];

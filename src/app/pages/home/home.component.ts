@@ -44,6 +44,13 @@ export class HomeComponent {
     this.usersService.changeUsers(this.usersList)
     this.dataSource = new MatTableDataSource(this.usersList);
 
+    this.options = new FormGroup({
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
+      age: new FormControl(0),
+      location: new FormControl(''),
+    });
+
   }
 
   deleteItem(item: User){
