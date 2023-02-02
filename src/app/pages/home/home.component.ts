@@ -63,8 +63,7 @@ export class HomeComponent {
     const ref: MatDialogRef<AgeRestrictionComponent> = this.dialog.open(
       AgeRestrictionComponent,
       {
-        width: '900px',
-        height: '650px',
+        width: '600px',
         backdropClass: 'confirmDialogComponent',
         hasBackdrop: true,
       }

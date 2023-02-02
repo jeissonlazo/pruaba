@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { FormsModule } from '@angular/forms';
 
 import { MatIconModule} from '@angular/material/icon';
 import { MatSelectModule} from '@angular/material/select';
@@ -15,7 +15,8 @@ import { MatCheckboxModule} from '@angular/material/checkbox';
 import { MatButtonModule} from '@angular/material/button';
 import { MatTableModule} from '@angular/material/table';
 import { MatFormFieldModule} from '@angular/material/form-field';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule} from '@angular/material/dialog';
+import { MatDividerModule} from '@angular/material/divider';
 
 import { HomeComponent } from './pages/home/home.component';
 import { ListFilterComponent } from './pages/list-filter/list-filter.component';
@@ -42,7 +43,9 @@ import { AgeRestrictionComponent } from './pages/home/age-restriction/age-restri
     MatCheckboxModule, 
     MatButtonModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
