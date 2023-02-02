@@ -1,27 +1,9 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {MatTableDataSource} from '@angular/material/table';
+import { FormControl, FormGroup} from '@angular/forms';
+import { MatTableDataSource} from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AgeRestrictionComponent } from './age-restriction/age-restriction.component';
-export interface Element {
-  firstName: string;
-  age: number;
-  lastName: string;
-  location: string;
-}
-
-let ELEMENT_DATA: Element[] = [
-  {age: 1,firstName: 'Hugo', lastName: 'Andrade', location: 'Latam'},
-  {age: 2,firstName: 'Martín', lastName: 'Benítez', location: 'Asia'},
-  {age: 3,firstName: 'Lucas', lastName: 'Castillo', location: 'Europa'},
-  {age: 4,firstName: 'Mateo', lastName: 'Castro', location: 'Latam'},
-  {age: 5,firstName: 'Leo', lastName: 'Contreras', location: 'Asia'},
-  {age: 6,firstName: 'Daniel ', lastName: 'De León', location: 'USA'},
-  {age: 7,firstName: 'Alejandro ', lastName: 'Díaz', location: 'Latam'},
-  {age: 8,firstName: 'Pablo ', lastName: 'Duarte', location: 'Europa'},
-  {age: 9,firstName: 'Manuel', lastName: 'Espinoza', location: 'USA'},
-  {age: 10,firstName: 'Álvaro ', lastName: 'Fernández', location: 'Latam'},
- ];
+import { UsersService, User } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-home',
@@ -37,10 +19,19 @@ export class HomeComponent {
     location: new FormControl(''),
   });
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private usersService:UsersService
+    ) {}
 
   displayedColumns: string[] = [ 'firstName', 'lastName', 'age','location', 'actions'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource:any;
+  usersList:User[] = [];
+
+  ngOnInit(){
+    this.usersService.currentUsers.subscribe(users => this.usersList = users)
+    this.dataSource = new MatTableDataSource(this.usersList);
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -48,15 +39,18 @@ export class HomeComponent {
   }
 
   onSubmit(): void {
-    let value = this.options.value as Element;
-    ELEMENT_DATA.push(value)
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+    let value = this.options.value as User;
+    this.usersList.push (value);
+    this.usersService.changeUsers(this.usersList)
+    this.dataSource = new MatTableDataSource(this.usersList);
+
   }
 
-  deleteItem(item: Element){
-    let r = ELEMENT_DATA.filter(element => element != item);
-    ELEMENT_DATA = r;
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+  deleteItem(item: User){
+    let r = this.usersList.filter(element => element != item);
+    this.usersList = r;
+    this.usersService.changeUsers(this.usersList)
+    this.dataSource = new MatTableDataSource(this.usersList);
   }
 
   openDialog() {
